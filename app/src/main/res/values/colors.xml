@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#393a3f</color>
+    <color name="colorPrimaryDark">#303135</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="yellow_border">#f3cf44</color>
+
+
+
+
+<!--    &lt;!&ndash;前景主色，如字体颜色、icon颜色&ndash;&gt;-->
+<!--    <color name="easy_photos_fg_primary">#3e4145</color>-->
+<!--    &lt;!&ndash;前景偏暗色，如不可用状态的字体颜色&ndash;&gt;-->
+<!--    <color name="easy_photos_fg_primary_dark">#9b9b9b</color>-->
+<!--    &lt;!&ndash;前景突出色，如发送按钮的背景色，选中状态的颜色&ndash;&gt;-->
+<!--    <color name="easy_photos_fg_accent">#578fff</color>-->
+
+<!--    &lt;!&ndash;背景色，如每个activity的背景色，相册的图片间隔线颜色&ndash;&gt;-->
+<!--    <color name="easy_photos_bg_primary">#f9f9f9</color>-->
+
+<!--    &lt;!&ndash;操作栏主色，如相册页顶部和底部操作栏&ndash;&gt;-->
+<!--    <color name="easy_photos_bar_primary">#ffffff</color>-->
+<!--    &lt;!&ndash;操作栏偏暗色，操作栏间隔线颜色，如相册页返回按钮右边的竖线&ndash;&gt;-->
+<!--    <color name="easy_photos_bar_primary_dark">#f9f9f9</color>-->
+<!--    &lt;!&ndash;操作栏带透明的色值，如预览页的底部操作栏颜色，相册页的相机按钮背景颜色。&ndash;&gt;-->
+<!--    <color name="easy_photos_bar_primary_translation">#b4ffffff</color>-->
+
+<!--    &lt;!&ndash;状态栏&ndash;&gt;-->
+<!--    <color name="easy_photos_status_bar">#ffffff</color>-->
+
+
+<!--    &lt;!&ndash;图片预览页：api21以上预览页状态栏颜色为该色值；api19和api20状态栏为透明色；-->
+<!--    其余api状态栏或透明或黑或灰，取决于各家rom和有无实体按键等因素。注：其余页面状态栏根据你的主题走&ndash;&gt;-->
+<!--    <color name="preview_status_easy_photos">#d73c3d41</color>-->
+<!--    &lt;!&ndash;预览页的底部栏和选中图片列表背景颜色&ndash;&gt;-->
+<!--    <color name="preview_bottom_bar_easy_photos">#eb212123</color>-->
+<!--    &lt;!&ndash;预览页的底部栏与选中图片列表的分割线颜色&ndash;&gt;-->
+<!--    <color name="preview_bottom_bar_line_easy_photos">#ee3a3a3e</color>-->
+
+
+
+    <!--前景色-->
+    <color name="easy_photos_fg_primary">#ffffff</color>//3e4145  前景主色，如字体颜色、icon颜色
+    <color name="easy_photos_fg_primary_dark">#9b9b9b</color>//前景偏暗色，如不可用状态的字体颜色
+    <color name="easy_photos_fg_accent">#00AA00</color>//578fff  前景突出色，如发送按钮的背景色，选中状态的颜色
+
+    <!--背景色-->
+    <color name="easy_photos_bg_primary">#000000</color>//f9f9f9  背景色，如每个activity的背景色，相册的图片间隔线颜色
+
+    <!--操作栏颜色-->
+    <color name="easy_photos_bar_primary">#393a3f</color>//ffffff 操作栏主色，如相册页顶部和底部操作栏
+    <color name="easy_photos_bar_primary_dark">#303135</color>//f9f9f9  操作栏偏暗色，操作栏间隔线颜色，如相册页返回按钮右边的竖线
+    <color name="easy_photos_bar_primary_translation">#eb212123</color>//b4ffffff  操作栏带透明的色值，如预览页的底部操作栏颜色，相册页的相机按钮背景颜色。
+
+    <!--状态栏-->
+    <color name="easy_photos_status_bar">#393a3f</color>//#ffffff
+
+
+
+</resources>

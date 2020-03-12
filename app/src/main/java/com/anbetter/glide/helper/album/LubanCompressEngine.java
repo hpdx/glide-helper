@@ -1,0 +1,101 @@
+package com.anbetter.glide.helper.album;
+
+import android.content.Context;
+import android.os.Build;
+import android.os.Environment;
+import android.text.TextUtils;
+
+import com.anbetter.album.callback.CompressCallback;
+import com.anbetter.album.engine.CompressEngine;
+import com.anbetter.album.models.album.entity.PhotoInfo;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import top.zibin.luban.CompressionPredicate;
+import top.zibin.luban.Luban;
+
+public class LubanCompressEngine implements CompressEngine {
+
+    //单例
+    private static LubanCompressEngine instance = null;
+
+    //单例模式，私有构造方法
+    private LubanCompressEngine() {
+
+    }
+
+    //获取单例
+    public static LubanCompressEngine getInstance() {
+        if (null == instance) {
+            synchronized (LubanCompressEngine.class) {
+                if (null == instance) {
+                    instance = new LubanCompressEngine();
+                }
+            }
+        }
+        return instance;
+    }
+
+    private String getPath(Context context) {
+        String path;
+        //Android 10 存在在应用内
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            path = Environment.getExternalStorageDirectory() + "/Luban/image/";
+        } else {
+            path = context.getFilesDir() + "/Luban/image/";
+        }
+        File file = new File(path);
+        if (file.mkdirs()) {
+            return path;
+        }
+        return path;
+    }
+
+    @Override
+    public void compress(final Context context, final ArrayList<PhotoInfo> photos, final CompressCallback callback) {
+        //TODO 演示使用只简单进行图片压缩，根据实际使用情况修改
+        callback.onStart();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ArrayList<String> paths = new ArrayList<>();
+                    for (PhotoInfo photo : photos) {
+                        if (photo.selectedOriginal) continue;
+                        if (!TextUtils.isEmpty(photo.cropPath)) {
+                            paths.add(photo.cropPath);
+                        } else {
+                            paths.add(photo.path);
+                        }
+                    }
+                    if (paths.isEmpty()) {
+                        callback.onSuccess(photos);
+                        return;
+                    }
+
+                    List<File> files = Luban.with(context).load(paths)
+                            .ignoreBy(100)
+                            .setTargetDir(getPath(context))
+                            .filter(new CompressionPredicate() {
+                                @Override
+                                public boolean apply(String path) {
+                                    return !(TextUtils.isEmpty(path) || path.toLowerCase().endsWith(".gif") || path.toLowerCase().endsWith(".mp4"));
+                                }
+                            }).get();
+                    for (int i = 0, j = photos.size(); i < j; i++) {
+                        PhotoInfo photo = photos.get(i);
+                        photo.compressPath = files.get(i).getPath();
+                    }
+                    callback.onSuccess(photos);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    callback.onFailed(photos, e.getMessage());
+                }
+            }
+        }).start();
+    }
+
+}
