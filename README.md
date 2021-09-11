@@ -243,6 +243,34 @@ Glide.with(this)
 ```
 
 ```
+        val imageUrl = ""
+        val tvTitle: TextView? = null
+        Glide.with(itemView.context)
+            .asBitmap()
+            .load(imageUrl)
+            .apply(RequestOptions().override(Target.SIZE_ORIGINAL))
+            .into(object : CustomViewTarget<View, Bitmap>(tvTitle) {
+
+                override fun onLoadFailed(errorDrawable: Drawable?) {
+                }
+
+                override fun onResourceReady(
+                    resource: Bitmap,
+                    transition: Transition<in Bitmap>?
+                ) {
+                    // 回调在主线程
+                    if (mLifecycle?.currentState != Lifecycle.State.DESTROYED) {
+                        // do something
+                    }
+                }
+
+                override fun onResourceCleared(placeholder: Drawable?) {
+                }
+            })
+```
+
+
+```
 File file = Glide.with(this)
                 .load(url)
                 .submit()
